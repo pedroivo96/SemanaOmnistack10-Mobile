@@ -68,27 +68,29 @@ function Main({ navigation }){
                 onRegionChangeComplete={handleRegionChanged} 
                 style={styles.map}>
 
-                    {devs.map(dev => (
-                        <Marker
-                            key={dev._id} 
-                            coordinate={{ 
-                                latitude: dev.location.coordinates[1], 
-                                longitude: dev.location.coordinates[0]
-                            }}>
-                            <Image style={styles.avatar} source={{uri: dev.avatar_url}}/>
-                    
-                            <Callout onPress={() => {
-                                //Navegação
-                                navigation.navigate('Profile', { github_username: dev.github_username });
-                            }}>
-                                <View style={styles.callout}>
-                                    <Text style={styles.devName}>{dev.name}</Text>
-                                    <Text style={styles.devBio}>{dev.bio}</Text>
-                                    <Text style={styles.devTechs}>{dev.techs.join(', ')}</Text>
-                                </View>
-                            </Callout>
-                        </Marker>
-                    ))}
+                    {devs.map(dev =>{
+                        return (
+                            <Marker
+                                key={dev._id} 
+                                coordinate={{ 
+                                    latitude: dev.location.coordinates[1], 
+                                    longitude: dev.location.coordinates[0]
+                                }}>
+                                <Image style={styles.avatar} source={{uri: dev.avatar_url}}/>
+                        
+                                <Callout onPress={() => {
+                                    //Navegação
+                                    navigation.navigate('Profile', { github_username: dev.github_username });
+                                }}>
+                                    <View style={styles.callout}>
+                                        <Text style={styles.devName}>{dev.name}</Text>
+                                        <Text style={styles.devBio}>{dev.bio}</Text>
+                                        <Text style={styles.devTechs}>{dev.techs.join(', ')}</Text>
+                                    </View>
+                                </Callout>
+                            </Marker>
+                        )
+                    })}
 
             </MapView>
 
